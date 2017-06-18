@@ -1,0 +1,87 @@
+<md-grid-list cols="4" rowHeight="180px" style="background-color:transparent">
+
+
+    <md-grid-tile colspan="1" rowspan="1">
+        <button md-raised-button (click)="startNewGame('firstName')"
+                class="my-background"><h3>Play 4 first name</h3></button>
+    </md-grid-tile>
+    <md-grid-tile colspan="1" rowspan="1">
+
+        <button md-raised-button (click)="startNewGame('stateName')"
+                class="my-background"><h3>Play 4 state name</h3></button>
+    </md-grid-tile>
+    <md-grid-tile colspan="1" rowspan="1">
+
+        <div class="input-group">
+            <input type="text" [(ngModel)]="inputGameId" class="form-control" placeholder="Game Id"
+                   style="height:56px;width:90px;">
+            <button md-raised-button (click)="getGame()" [disabled]="!inputGameId"
+                    class="my-background"><h3>Get my game</h3></button>
+        </div>
+    </md-grid-tile>
+    <md-grid-tile colspan="1" rowspan="1">
+        <md-chip-list *ngIf="gameId">
+            <md-chip color="primary"><h3>Game id {{gameId}}</h3></md-chip>
+        </md-chip-list>
+    </md-grid-tile>
+
+</md-grid-list>
+
+<md-grid-list cols="1" rowHeight="160px">
+    <md-grid-tile colspan="1">
+        <md-card>
+            <md-card-header>
+                <md-card-title><h3>Pick your guess</h3></md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <button md-mini-fab *ngFor="let inputChar of stringArr" (click)="playGame(inputChar)"
+                        [disabled]="((!(state == 1))  || selectedArr.indexOf(inputChar) > -1  )" color="ascent">
+                    {{inputChar}}
+                </button>
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+</md-grid-list>
+
+<md-grid-list cols="3" rowHeight="350px">
+    <md-grid-tile colspan="1" rowspan="1">
+        <md-card>
+            <md-card-header>
+                <md-card-title><h3>Your guess</h3></md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <button md-fab *ngFor="let inputChar of selectedArr" disabled="true">{{inputChar}}</button>
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+
+    <md-grid-tile colspan="1" rowspan="1">
+        <md-card>
+            <md-card-header>
+                <md-card-title>
+                    <h3>Match</h3>
+
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <button md-fab *ngFor="let inputChar of matchArr" disabled="true">{{inputChar}}</button>
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+
+    <md-grid-tile colspan="1" rowspan="1">
+        <md-card [ngClass]="background">
+            <md-card-header>
+                <md-card-title>
+                    <h1 *ngIf="state == 1"><h3>Attempts left {{ remainingAttempts }}</h3></h1>
+                    <h3 *ngIf="state == 2"><h3>It's {{randomWordArr.join('')}}.</h3> Are not you a champ!!</h3>
+                    <h3 *ngIf="state == 3"><h3>It was {{randomWordArr.join('')}}.</h3> Wanna try again?</h3>
+                </md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <img [src]='imgLocation'>
+            </md-card-content>
+        </md-card>
+    </md-grid-tile>
+
+</md-grid-list>
