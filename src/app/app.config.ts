@@ -4,7 +4,9 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AppConfig {
 
-    public WEB_API_URL = `http://ALB-1-112567681.us-west-2.elb.amazonaws.com/api`;
+    public WEB_API_URL = `https://ye9wlphoi9.execute-api.us-west-2.amazonaws.com/api`;
+    //public WEB_API_URL = `http://ALB-1-112567681.us-west-2.elb.amazonaws.com/api`;
+
     //public WEB_API_URL = `http://localhost:3020/api`;
    // public WEB_API_URL = 'http://54.201.251.133/api/hangman';
 
